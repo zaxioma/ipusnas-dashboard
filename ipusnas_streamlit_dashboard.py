@@ -39,7 +39,7 @@ if uploaded_file is not None:
     st.bar_chart(top_books)
 
     st.subheader("🗓️ Tren Peminjaman Harian")
-    daily_trend = df['created_at'].dt.date.value_counts().sort_index()
+    daily_trend = df['created_at'].dt.hour.value_counts().sort_index()
     st.line_chart(daily_trend)
 
     st.subheader("⭐ Rata-rata Rating Buku")
