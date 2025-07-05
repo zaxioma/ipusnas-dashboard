@@ -23,6 +23,7 @@ if uploaded_file is not None:
         'total_like',
         'total_comment',
         'feed_type',
+        'review_book_book_title'
         'review_rating_comment'
     ]]
 
