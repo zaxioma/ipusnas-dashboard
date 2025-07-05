@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
+ from textblob import TextBlob
 
 st.set_page_config(page_title="Dashboard iPusnas", layout="wide")
 
@@ -46,7 +47,7 @@ if uploaded_file is not None:
     avg_rating = df.groupby('book_book_title')['book_avg_rating'].mean().dropna().sort_values(ascending=False).head(10)
     st.bar_chart(avg_rating)
 
-    from textblob import TextBlob
+   
 
 st.subheader("💬 Analisis Sentimen Komentar Pembaca")
 
