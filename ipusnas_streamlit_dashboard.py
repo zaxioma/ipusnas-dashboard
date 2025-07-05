@@ -62,7 +62,7 @@ if uploaded_file is not None:
             st.dataframe(review_df[['sender_name', 'book_book_title', 'review_rating_comment', 'sentiment_polarity']].head())
     
             st.write("Distribusi Sentimen")
-            st.hist_chart(review_df['sentiment_polarity'])
+            st.bar_chart(review_df['sentiment_polarity'])
         else:
             st.info("Belum ada data komentar pada transaksi BOOK_REVIEW.")
     else:
