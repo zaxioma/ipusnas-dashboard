@@ -54,14 +54,14 @@ if uploaded_file is not None:
     review_df = df[(df['feed_type'] == 'BOOK_REVIEW') & (df['review_rating_comment'].notnull())]
 
     if not review_df.empty:
-    review_df['sentiment_polarity'] = review_df['review_rating_comment'].apply(lambda x: TextBlob(x).sentiment.polarity)
-    st.write("Contoh Komentar dan Sentimennya:")
-    st.dataframe(review_df[['sender_name', 'book_book_title', 'review_rating_comment', 'sentiment_polarity']].head())
+        review_df['sentiment_polarity'] = review_df['review_rating_comment'].apply(lambda x: TextBlob(x).sentiment.polarity)
+        st.write("Contoh Komentar dan Sentimennya:")
+        st.dataframe(review_df[['sender_name', 'book_book_title', 'review_rating_comment', 'sentiment_polarity']].head())
 
-    st.write("Distribusi Sentimen")
-    st.hist_chart(review_df['sentiment_polarity'])
+        st.write("Distribusi Sentimen")
+        st.hist_chart(review_df['sentiment_polarity'])
     else:
-    st.info("Belum ada data komentar pada transaksi BOOK_REVIEW.")
+        st.info("Belum ada data komentar pada transaksi BOOK_REVIEW.")
 
 
     st.subheader("📬 Data Mentah")
