@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
- from textblob import TextBlob
+from textblob import TextBlob
 
 st.set_page_config(page_title="Dashboard iPusnas", layout="wide")
 
@@ -49,18 +49,18 @@ if uploaded_file is not None:
 
    
 
-st.subheader("💬 Analisis Sentimen Komentar Pembaca")
+    st.subheader("💬 Analisis Sentimen Komentar Pembaca")
 
-review_df = df[(df['feed_type'] == 'BOOK_REVIEW') & (df['review_rating_comment'].notnull())]
+    review_df = df[(df['feed_type'] == 'BOOK_REVIEW') & (df['review_rating_comment'].notnull())]
 
-if not review_df.empty:
+    if not review_df.empty:
     review_df['sentiment_polarity'] = review_df['review_rating_comment'].apply(lambda x: TextBlob(x).sentiment.polarity)
     st.write("Contoh Komentar dan Sentimennya:")
     st.dataframe(review_df[['sender_name', 'book_book_title', 'review_rating_comment', 'sentiment_polarity']].head())
 
     st.write("Distribusi Sentimen")
     st.hist_chart(review_df['sentiment_polarity'])
-else:
+    else:
     st.info("Belum ada data komentar pada transaksi BOOK_REVIEW.")
 
 
