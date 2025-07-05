@@ -21,7 +21,8 @@ if uploaded_file is not None:
         'book_authors',
         'book_avg_rating',
         'total_like',
-        'total_comment'
+        'total_comment',
+        'feed_type'
     ]]
 
     df['created_at'] = pd.to_datetime(df['created_at'])
