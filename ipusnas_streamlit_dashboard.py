@@ -46,6 +46,23 @@ if uploaded_file is not None:
     avg_rating = df.groupby('book_book_title')['book_avg_rating'].mean().dropna().sort_values(ascending=False).head(10)
     st.bar_chart(avg_rating)
 
+    from textblob import TextBlob
+
+st.subheader("💬 Analisis Sentimen Komentar Pembaca")
+
+review_df = df[(df['feed_type'] == 'BOOK_REVIEW') & (df['review_rating_comment'].notnull())]
+
+if not review_df.empty:
+    review_df['sentiment_polarity'] = review_df['review_rating_comment'].apply(lambda x: TextBlob(x).sentiment.polarity)
+    st.write("Contoh Komentar dan Sentimennya:")
+    st.dataframe(review_df[['sender_name', 'book_book_title', 'review_rating_comment', 'sentiment_polarity']].head())
+
+    st.write("Distribusi Sentimen")
+    st.hist_chart(review_df['sentiment_polarity'])
+else:
+    st.info("Belum ada data komentar pada transaksi BOOK_REVIEW.")
+
+
     st.subheader("📬 Data Mentah")
     st.dataframe(df)
 else:
