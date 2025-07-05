@@ -69,6 +69,8 @@ if uploaded_file is not None:
         st.warning("Kolom 'feed_type' atau 'review_rating_comment' tidak ditemukan dalam data.")
 
     st.subheader("📬 Data Mentah")
-    st.dataframe(df)
+    if 'book_book_title' in df.columns and 'review_book_book_title' in df.columns:
+        df['book_book_title'] = df['book_book_title'].fillna(df['review_book_book_title'])
+        st.dataframe(df)
 else:
     st.info("Silakan unggah file JSON terlebih dahulu.")
